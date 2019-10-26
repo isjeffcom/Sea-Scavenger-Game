@@ -97,17 +97,6 @@ public class ColliderDetector : MonoBehaviour
 
     }
 
-
-
-
-    void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.name == "Item"){
-            hint.position = hide;
-        }
-        
-    }
-
     void toMainCamera (bool bol){
         mainCamera.enabled = bol;
         pickUpCamera.enabled = !bol;

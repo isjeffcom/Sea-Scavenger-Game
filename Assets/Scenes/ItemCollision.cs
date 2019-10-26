@@ -40,5 +40,14 @@ public class ItemCollision : MonoBehaviour
 
     }
 
-    
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "RealSub")
+        {
+
+            hint.position = new Vector3(-1,-1,1);
+        }
+    }
+
+
 }
