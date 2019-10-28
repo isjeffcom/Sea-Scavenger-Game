@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour
         instanceFF.transform.rotation = transform.rotation;
 
         // Destroy Instance After PS Lifetime is over
-        StartCoroutine(destroyInsPS(instanceFF, 10));
+        StartCoroutine(destroyInsPS(instanceFF, 3));
         
 
         /*RaycastHit hit;

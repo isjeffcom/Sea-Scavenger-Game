@@ -71,11 +71,11 @@ public class ColliderDetector : MonoBehaviour
     {
         if(_mode == 0)
         {
-            StartCoroutine(delayToView(obj, 1));
+            StartCoroutine(delayToView(obj, 0.1f));
         }
     }
 
-    IEnumerator delayToView(GameObject obj, int delay)
+    IEnumerator delayToView(GameObject obj, float delay)
     {
 
         // Copy Object
@@ -85,10 +85,27 @@ public class ColliderDetector : MonoBehaviour
         instanceObj.AddComponent<ViewItem>();
 
         // Apply Holo Material to instance object
-        instanceObj.GetComponent<Renderer>().material = holoMaterial;
+        if (instanceObj.GetComponent<MeshRenderer>())
+        {
+            instanceObj.GetComponent<Renderer>().material = holoMaterial;
+            // Apply new scale value to new shape
+            instanceObj.transform.localScale = new Vector3(1, 1, 1);
 
-        // Apply new scale value to new shape
-        instanceObj.transform.localScale = new Vector3(1, 1, 1);
+        } else
+        {
+            foreach(Transform child in instanceObj.transform)
+            {
+                if (child.GetComponent<Renderer>())
+                {
+                    child.GetComponent<Renderer>().material = holoMaterial;
+                }
+
+                // Apply new scale value to new shape
+                instanceObj.transform.localScale = new Vector3(10, 10, 10);
+            }
+            
+        }
+        
 
         // Wait 3 Seconds to show the leaser effect
         yield return new WaitForSeconds(delay);

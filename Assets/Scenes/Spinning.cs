@@ -7,7 +7,7 @@ public class Spinning : MonoBehaviour
 
     void Update()
     {
-        if (ShipController.moveFB > 0)
+        if (ShipController.moveFB != 0)
         {
             transform.Rotate(0, 0, 10 * ShipController.moveFB * Time.deltaTime);
         } else
