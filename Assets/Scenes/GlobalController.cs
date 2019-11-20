@@ -3,7 +3,7 @@
 // Initilized and UI Page Router
 // This is for smoothly switch UI with camera animation
 // Also because I dont want to learn Unity Scene concept END OF THE STROY
-// For FUCK SAKE, Someone should really built a UI framework like Vue.js or React for Game Dev
+// For F S, Someone should really built a UI framework like Vue.js or React for Game Dev
 
 public class GlobalController : MonoBehaviour
 {
@@ -14,12 +14,15 @@ public class GlobalController : MonoBehaviour
     // Mode 0: Start Screen, 1: Game Play, 2: Pick up item
     public static int _mode = 0;
     public static int _score = 0;
+    public static int _paw = 30;
+    public static int _load = 78;
+    public static int _loadTotal = 300;
 
     // Cameras
     public Camera mainCamera;
     public Camera pickUpCamera;
 
-
+    // All UI Array Container
     private GameObject[] All_UI;
 
     // Objects for hide
@@ -37,6 +40,20 @@ public class GlobalController : MonoBehaviour
         // Open main camera
         switchCamera("MainCamera");
         switchUIView("UI_Start", "MainCamera", true, 0);
+    }
+
+    void LateUpdate()
+    {
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            _load = _load + 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            _loadTotal = _loadTotal + 1;
+        }
     }
 
     public void startGame ()

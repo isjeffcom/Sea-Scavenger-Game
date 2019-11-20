@@ -16,8 +16,8 @@ public class TailFlameSpeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        targetPS.startSpeed = ShipController.moveFB > 50 ? ShipController.moveFB / 5 : 10;
-        targetPS.startSize = ShipController.moveFB > 60 ? ShipController.moveFB / 40 : 1.2f;
-        targetPS.maxParticles = ShipController.moveFB != 0 ? Mathf.RoundToInt(ShipController.moveFB * 100) : 1000;
+        targetPS.startSpeed = ShipController._moveFB > 50 ? ShipController._moveFB / 5 : 10;
+        targetPS.startSize = ShipController._moveFB > 60 ? ShipController._moveFB / 40 : 1.2f;
+        targetPS.maxParticles = ShipController._moveFB != 0 ? Mathf.RoundToInt(ShipController._moveFB * 100) : 1000;
     }
 }

@@ -28,9 +28,9 @@ public class ShipController : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
-    public static float moveFB;
-    public static float moveLR;
-    public static float moveTB;
+    public static float _moveFB;
+    public static float _moveLR;
+    public static float _moveTB;
 
     float rotX;
     float rotY;
@@ -58,13 +58,12 @@ public class ShipController : MonoBehaviour
     {
 
         // Reset All Value
-        moveFB = 0;
-        moveLR = 0;
-        moveTB = 0;
+        _moveFB = 0;
+        _moveLR = 0;
+        _moveTB = 0;
         rotX = 0;
         rotY = 0;
         rotZ = 0;
-
 
         if (stopMoving)
         {
@@ -103,7 +102,7 @@ public class ShipController : MonoBehaviour
 
         if (Input.GetAxis("Vertical") != 0)
         {
-            moveFB = Input.GetAxis("Vertical") * moveSpeed;
+            _moveFB = Input.GetAxis("Vertical") * moveSpeed;
         }
 
         if (Input.GetAxis("Horizontal") != 0)
@@ -127,15 +126,15 @@ public class ShipController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl) && transform.position.y > bottomLimit)
         {
-            moveTB = -2 * moveSpeed;
+            _moveTB = -2 * moveSpeed;
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && transform.position.y < topLimit)
         {
-            moveTB = 2 * moveSpeed;
+            _moveTB = 2 * moveSpeed;
         }
 
-        Vector3 movement = new Vector3(moveLR, moveTB, moveFB);
+        Vector3 movement = new Vector3(_moveLR, _moveTB, _moveFB);
         movement = transform.rotation * movement;
         Vector3 movingTarget = transform.position + movement;
 
