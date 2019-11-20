@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ColliderDetector : MonoBehaviour
 {
-
     public Transform hint;
     public Transform cam;
     public Camera mainCamera;
@@ -20,13 +19,8 @@ public class ColliderDetector : MonoBehaviour
 
     public Material holoMaterial;
 
-    public static int score = 0;
-
     public static ColliderDetector _instance;
     public static string currentSolution;
-
-    // 0: Free world, 1: Pick up item
-    public int _mode = 0;
 
     private GameObject item;
     private Vector3 itemOriginalPosi;
@@ -34,42 +28,18 @@ public class ColliderDetector : MonoBehaviour
 
     private GameObject instanceObj;
 
-    private Canvas UIItemViewer;
-    private Canvas UIDriving;
-    private Light obsurbLight;
-    
-    
-
     Vector3 offset = new Vector3 (8, 8, -8);
 
-    Vector3 hide = new Vector3 (-1, -1, 1);
+    //Vector3 hide = new Vector3 (-1, -1, 1);
 
     void Awake(){
 		_instance = this;
 	}
-    
 
-    void Start () {
-        toMainCamera(true);
-        UIItemViewer = UI_ItemViewer.GetComponent<Canvas> ();
-        UIDriving = UI_Driving.GetComponent<Canvas> ();
-        obsurbLight = IdLeaser.GetComponent<Light> ();
-
-        UIItemViewer.enabled = false;
-        hint.position = hide;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    void Update () {
-        if(Input.GetKeyDown(KeyCode.F) && _mode == 1){
-            exitViewerMode();
-        }
-    }
-
+    // Delay 0.1f and go to view item (give some time for the instantiate process)
     public void toViewItem (GameObject obj)
     {
-        if(_mode == 0)
+        if(GlobalController._mode == 1)
         {
             StartCoroutine(delayToView(obj, 0.1f));
         }
@@ -106,44 +76,23 @@ public class ColliderDetector : MonoBehaviour
             
         }
         
-
         // Wait 3 Seconds to show the leaser effect
         yield return new WaitForSeconds(delay);
 
+        // Enter view mode
         enterViewerMode();
 
     }
 
-    void toMainCamera (bool bol){
-        mainCamera.enabled = bol;
-        pickUpCamera.enabled = !bol;
-    }
 
+    // All UI Switch action now control by Global controller
     public void enterViewerMode () {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-
-        // Switch Camera
-        toMainCamera(false);
-
-        // Set UIItemViewer Is True
-        UIItemViewer.enabled = true;
-        UIDriving.enabled = false;
-
-        // Set Mode
-        _mode = 1;
+        
+        GlobalController._ins.switchUIView("UI_ItemViewer", "PickUpCamera", true, 2);
     }
 
     public void exitViewerMode () {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        UIItemViewer.enabled = false;
-        UIDriving.enabled = true;
-
-        // Display obsurb light 
-        obsurbLight.enabled = false;
-        toMainCamera(true);
+        GlobalController._ins.switchUIView("UI_Driving", "MainCamera", false, 1);
         Destroy(instanceObj);
-        _mode = 0;
     }
 }

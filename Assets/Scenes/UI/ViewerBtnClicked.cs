@@ -13,10 +13,8 @@ public class ViewerBtnClicked : MonoBehaviour
 
         ColliderDetector._instance.exitViewerMode();
 
-        //ameObject dr = GameObject.Find("UI_Score");
-
         if(value == ColliderDetector.currentSolution){
-            ColliderDetector.score = ColliderDetector.score + 1000;
+            GlobalController._score = GlobalController._score + 1000;
             DisplayResult._displayResult.showResult("Go Job !!");
         }else{
             DisplayResult._displayResult.showResult("WRONG");

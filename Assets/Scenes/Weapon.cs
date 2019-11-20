@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
         }
 
         if(Input.GetButton("Fire1")){
-            if(mFireTimer == 0 && ColliderDetector._instance._mode == 0){
+            if(mFireTimer == 0 && GlobalController._mode == 1){
                 Shoot();
                 mFireTimer = fireGap;
             }

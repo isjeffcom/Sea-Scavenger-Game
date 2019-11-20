@@ -76,7 +76,7 @@ public class ShipController : MonoBehaviour
             resetScene();
         }
 
-        if (ColliderDetector._instance._mode != 1)
+        if (GlobalController._mode == 1)
         {
 
             // Reset rotation and face forward

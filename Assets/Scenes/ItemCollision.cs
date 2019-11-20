@@ -8,7 +8,6 @@ public class ItemCollision : MonoBehaviour
 
     public Transform hint;
     public Transform mainCamera;
-    public ColliderDetector cd;
 
 
     Vector3 hintOffset = new Vector3(8, 8, -8);
@@ -29,12 +28,12 @@ public class ItemCollision : MonoBehaviour
 
         if (other.gameObject.name == "RealSub")
         {
-
+            
             hint.LookAt(mainCamera);
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                cd.toViewItem(gameObject);
+                ColliderDetector._instance.toViewItem(gameObject);
             }
         }
 

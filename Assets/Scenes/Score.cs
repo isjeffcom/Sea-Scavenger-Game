@@ -14,6 +14,6 @@ public class Score : MonoBehaviour
 
     // Update is called once per frame
     void LateUpdate() {
-        mObj.GetComponent<Text> ().text = "Money: " + ColliderDetector.score.ToString();
+        mObj.GetComponent<Text> ().text = "Money: " + GlobalController._score.ToString();
     }
 }
