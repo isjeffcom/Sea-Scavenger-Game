@@ -12,11 +12,13 @@ public class S_Btn_Text : MonoBehaviour
     public void hover()
     {
         text.color = Color.black;
+        text.fontStyle = FontStyle.Bold;
     }
 
     public void leave()
     {
 
         text.color = new Color(6f/255f, 240f/255f, 1f);
+        text.fontStyle = FontStyle.Normal;
     }
 }

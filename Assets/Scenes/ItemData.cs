@@ -10,15 +10,38 @@ public class ItemData : MonoBehaviour
     public string ItemCategory = "";
     public string ItemSolution = "";
 
-    public string getTitle () {
+    public string ItemMaterial = "";
+    public string ItemPublishYear = "";
+    public string ItemLethal = "";
+
+
+    public string getTitle ()
+    {
         return ItemTitle;
     }
 
-    public string getContent () {
+    public string getContent ()
+    {
         return ItemContent;
     }
 
-    public string getSolution () {
+    public string getSolution ()
+    {
         return ItemSolution;
+    }
+
+    public string getMaterial()
+    {
+        return ItemMaterial;
+    }
+
+    public string getPubYear()
+    {
+        return ItemPublishYear;
+    }
+
+    public string getLethal()
+    {
+        return ItemLethal;
     }
 }
