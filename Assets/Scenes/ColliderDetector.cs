@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ColliderDetector : MonoBehaviour
@@ -29,6 +28,9 @@ public class ColliderDetector : MonoBehaviour
     private GameObject instanceObj;
 
     Vector3 offset = new Vector3 (8, 8, -8);
+
+    private float st = 0f;
+    private float sts = 0.1f;
 
     //Vector3 hide = new Vector3 (-1, -1, 1);
 
@@ -84,11 +86,24 @@ public class ColliderDetector : MonoBehaviour
 
     }
 
+    void Update()
+    {
+
+        if (ItemViewerController._UI_IV_State == 1 && instanceObj != null && st < 3.3f)
+        {
+            Vector3 newPosi = new Vector3(instanceObj.transform.position.x + 0.1f, instanceObj.transform.position.y, instanceObj.transform.position.z);
+            instanceObj.transform.position = newPosi;
+            st = st + 0.1f;
+        }
+    }
+
 
     // All UI Switch action now control by Global controller
     public void enterViewerMode () {
         
         GlobalController._ins.switchUIView("UI_ItemViewer", "PickUpCamera", true, 2);
+        ItemViewerController._ins.PlayStartAni();
+        //Debug.Log(ItemViewerController._c);
     }
 
     public void exitViewerMode () {

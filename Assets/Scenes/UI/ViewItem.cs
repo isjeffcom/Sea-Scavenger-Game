@@ -23,6 +23,7 @@ public class ViewItem : MonoBehaviour {
 
 
     void Start () {
+
         data = mObj.GetComponent<ItemData> ();
 
         // Set UI Title String
