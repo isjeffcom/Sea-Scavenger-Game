@@ -11077,6 +11077,8 @@ GameObject:
   - component: {fileID: 131849738}
   - component: {fileID: 131849740}
   - component: {fileID: 131849739}
+  - component: {fileID: 131849742}
+  - component: {fileID: 131849741}
   m_Layer: 5
   m_Name: UI_IV_Solutions_Single
   m_TagString: Untagged
@@ -11143,6 +11145,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131849737}
   m_CullTransparentMesh: 0
+--- !u!114 &131849741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131849737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba2a13798ec5743b66ecea47fec4ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI_Score: {fileID: 0}
+--- !u!114 &131849742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131849737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 131849739}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 131849741}
+        m_MethodName: onClickHandler
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Destroy
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &182229735
 GameObject:
   m_ObjectHideFlags: 0
@@ -11622,6 +11691,8 @@ GameObject:
   - component: {fileID: 244438112}
   - component: {fileID: 244438114}
   - component: {fileID: 244438113}
+  - component: {fileID: 244438116}
+  - component: {fileID: 244438115}
   m_Layer: 5
   m_Name: UI_IV_Solutions_Single
   m_TagString: Untagged
@@ -11688,6 +11759,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244438111}
   m_CullTransparentMesh: 0
+--- !u!114 &244438115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244438111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba2a13798ec5743b66ecea47fec4ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI_Score: {fileID: 0}
+--- !u!114 &244438116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244438111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 244438113}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 244438115}
+        m_MethodName: onClickHandler
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Recycle
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &246636635
 GameObject:
   m_ObjectHideFlags: 0
@@ -12393,7 +12531,7 @@ GameObject:
   - component: {fileID: 323780295}
   - component: {fileID: 323780294}
   m_Layer: 5
-  m_Name: UI_IV_P_Single (1)
+  m_Name: UI_IV_P_Single
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12539,6 +12677,8 @@ GameObject:
   - component: {fileID: 345971068}
   - component: {fileID: 345971070}
   - component: {fileID: 345971069}
+  - component: {fileID: 345971072}
+  - component: {fileID: 345971071}
   m_Layer: 5
   m_Name: UI_IV_Solutions_Single
   m_TagString: Untagged
@@ -12605,6 +12745,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345971067}
   m_CullTransparentMesh: 0
+--- !u!114 &345971071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345971067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba2a13798ec5743b66ecea47fec4ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI_Score: {fileID: 0}
+--- !u!114 &345971072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345971067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 345971069}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 345971071}
+        m_MethodName: onClickHandler
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Collect
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &350998077
 GameObject:
   m_ObjectHideFlags: 0
@@ -40717,7 +40924,7 @@ GameObject:
   - component: {fileID: 1047732262}
   - component: {fileID: 1047732261}
   m_Layer: 5
-  m_Name: UI_IV_P_Title (1)
+  m_Name: UI_IV_P_MAT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46933,9 +47140,9 @@ MonoBehaviour:
     also internationally used in legislation, for road vehicles types, terms and definitions.'
   ItemCategory: 
   ItemSolution: Recycle
-  ItemMaterial: 
-  ItemPublishYear: 
-  ItemLethal: 
+  ItemMaterial: FISJL
+  ItemPublishYear: 2087.05
+  ItemLethal: LETHAL
 --- !u!1 &1266535646
 GameObject:
   m_ObjectHideFlags: 0
@@ -48032,7 +48239,7 @@ GameObject:
   - component: {fileID: 1384638648}
   - component: {fileID: 1384638647}
   m_Layer: 5
-  m_Name: UI_IV_P_Title (1)
+  m_Name: UI_IV_P_LETH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49756,7 +49963,7 @@ GameObject:
   - component: {fileID: 1656004770}
   - component: {fileID: 1656004769}
   m_Layer: 5
-  m_Name: UI_IV_P_Single (2)
+  m_Name: UI_IV_P_Single
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56048,7 +56255,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934609905}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -56144,7 +56351,7 @@ GameObject:
   - component: {fileID: 1940595247}
   - component: {fileID: 1940595246}
   m_Layer: 5
-  m_Name: UI_IV_P_Title (1)
+  m_Name: UI_IV_P_YEAR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56333,7 +56540,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955982348}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -58319,9 +58526,9 @@ MonoBehaviour:
     It is a common modernized variant of the AK-47 rifle developed in the 1940s. "
   ItemCategory: 
   ItemSolution: Destroy
-  ItemMaterial: 
-  ItemPublishYear: 
-  ItemLethal: 
+  ItemMaterial: METAL2
+  ItemPublishYear: 2026.03
+  ItemLethal: NOT LETHAL
 --- !u!114 &1499652485128544704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62322,9 +62529,9 @@ MonoBehaviour:
     aquifers.
   ItemCategory: 
   ItemSolution: Destroy
-  ItemMaterial: 
-  ItemPublishYear: 
-  ItemLethal: 
+  ItemMaterial: KOCAL
+  ItemPublishYear: 2066.05
+  ItemLethal: NOT LETHAL
 --- !u!1 &4443360361406735074
 GameObject:
   m_ObjectHideFlags: 0

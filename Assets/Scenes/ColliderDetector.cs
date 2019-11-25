@@ -29,9 +29,6 @@ public class ColliderDetector : MonoBehaviour
 
     Vector3 offset = new Vector3 (8, 8, -8);
 
-    private float st = 0f;
-    private float sts = 0.1f;
-
     //Vector3 hide = new Vector3 (-1, -1, 1);
 
     void Awake(){
@@ -54,7 +51,7 @@ public class ColliderDetector : MonoBehaviour
         instanceObj = Instantiate(obj, itemDemoPosition, Quaternion.Euler(new Vector3(0, 0, 0)));
 
         // Add script to object copied
-        instanceObj.AddComponent<ViewItem>();
+        //instanceObj.AddComponent<ViewItem>();
 
         // Apply Holo Material to instance object
         if (instanceObj.GetComponent<MeshRenderer>())
@@ -86,28 +83,17 @@ public class ColliderDetector : MonoBehaviour
 
     }
 
-    void Update()
-    {
-
-        if (ItemViewerController._UI_IV_State == 1 && instanceObj != null && st < 3.3f)
-        {
-            Vector3 newPosi = new Vector3(instanceObj.transform.position.x + 0.1f, instanceObj.transform.position.y, instanceObj.transform.position.z);
-            instanceObj.transform.position = newPosi;
-            st = st + 0.1f;
-        }
-    }
-
-
     // All UI Switch action now control by Global controller
     public void enterViewerMode () {
         
         GlobalController._ins.switchUIView("UI_ItemViewer", "PickUpCamera", true, 2);
-        ItemViewerController._ins.PlayStartAni();
-        //Debug.Log(ItemViewerController._c);
+        ItemViewerController._ins.EnterItemViewer(instanceObj);
+
     }
 
     public void exitViewerMode () {
         GlobalController._ins.switchUIView("UI_Driving", "MainCamera", false, 1);
+        ItemViewerController._ins.ExitItemViewer(); 
         Destroy(instanceObj);
     }
 }
