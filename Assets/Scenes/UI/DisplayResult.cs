@@ -1,39 +1,60 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DisplayResult : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static DisplayResult _displayResult;
+    public static DisplayResult _ins;
 
-    private GameObject mObj;
+    private GameObject UI_Res_Text;
+    private GameObject UI_Res_Money_Text;
 
     void Awake() {
-        _displayResult = this;
-        mObj = gameObject;
-        //Debug.Log(mobj);
-        
+        _ins = this;
+        UI_Res_Text = GameObject.Find("UI_Res_Text");
+        UI_Res_Money_Text = GameObject.Find("UI_Res_Money_Text");
+
     }
 
     void Start(){
-        mObj.GetComponent<Text> ().enabled = false;
+        gameObject.SetActive(false);
     }
 
-    public void showResult(string res) {
-        mObj.GetComponent<Text> ().enabled = true;
-        mObj.GetComponent<Text> ().text = res;
+    public void showResult(string res, string money) {
+        gameObject.SetActive(true);
+        StartAni(true);
+        UI_Res_Text.GetComponent<Text>().text = res;
+        UI_Res_Money_Text.GetComponent<Text>().text = money;
+        unshowResult();
+    }
+
+    void StartAni (bool bol)
+    {
+        gameObject.GetComponent<Animator>().SetBool("open", bol);
+    }
+
+    
+
+    void unshowResult ()
+    {
         StartCoroutine(close(3));
+        StartCoroutine(end(6));
     }
 
-    IEnumerator close(int delay){
+    IEnumerator close(int delay)
+    {
 
         // Wait 3 Seconds to show the leaser effect
         yield return new WaitForSeconds(delay);
+        StartAni(false);
+    }
 
-        mObj.GetComponent<Text> ().text = "";
-        mObj.GetComponent<Text> ().enabled = false;
+    IEnumerator end(int delay)
+    {
 
+        // Wait 3 Seconds to show the leaser effect
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
     }
 }

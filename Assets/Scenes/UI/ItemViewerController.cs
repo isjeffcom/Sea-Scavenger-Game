@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class ItemViewerController : MonoBehaviour
 
     // Instance for cross cs access
     public static ItemViewerController _ins;
+    public static string itemSolution;
 
     // Save State
     public static int _UI_IV_State = 0;
@@ -19,6 +21,7 @@ public class ItemViewerController : MonoBehaviour
     private ItemData data;
 
     // UI Container Static
+    private GameObject UI_IV_All_Bg;
     private GameObject UI_IV_Contents;
     private GameObject UI_IV_Contents_Cont;
     private GameObject UI_IV_Solutions;
@@ -39,6 +42,7 @@ public class ItemViewerController : MonoBehaviour
     private GameObject UI_IV_LETH;
 
     // UI Animator Controller
+    private Animator Ani_All_Bg;
     private Animator Ani_Solu;
     private Animator Ani_Contents;
     private Animator Ani_Property;
@@ -56,6 +60,7 @@ public class ItemViewerController : MonoBehaviour
         _ins = this;
 
         // Get UI Element Refs
+        UI_IV_All_Bg = GameObject.Find("UI_IV_All_Bg");
         UI_IV_Solutions = GameObject.Find("UI_IV_Solutions");
         UI_IV_Contents = GameObject.Find("UI_IV_Contents");
         UI_IV_Contents_Cont = GameObject.Find("UI_IV_Contents_Cont");
@@ -74,6 +79,7 @@ public class ItemViewerController : MonoBehaviour
         UI_IV_LETH = GameObject.Find("UI_IV_P_LETH");
 
         // Get Animator Refs
+        Ani_All_Bg = UI_IV_All_Bg.GetComponent<Animator>();
         Ani_Solu = UI_IV_Solutions.GetComponent<Animator>();
         Ani_Contents = UI_IV_Contents.GetComponent<Animator>();
         Ani_Property = UI_IV_Property.GetComponent<Animator>();
@@ -86,10 +92,12 @@ public class ItemViewerController : MonoBehaviour
 
     public void StartAni (bool bol)
     {
+        Ani_All_Bg.SetBool("open", bol);
         Ani_PageTitle.SetBool("open", bol);
         Ani_AnimatedBg.SetBool("open", bol);
         Ani_Contents_Cont.SetBool("open", bol);
         Ani_Status.SetBool("open", bol);
+        
     }
 
     public void EnterItemViewer(GameObject obj)
@@ -107,6 +115,7 @@ public class ItemViewerController : MonoBehaviour
         StartAni(true);
 
         //toState(0);
+        itemSolution = data.getSolution();
 
         // Set UI Text
         UI_IV_Title.GetComponent<Text>().text = data.getTitle();
@@ -126,7 +135,17 @@ public class ItemViewerController : MonoBehaviour
         _UI_IV_State = 0;
         loaclState = false;
         CObject = null;
+        itemSolution = null;
+        StartCoroutine(ExitItemViewerDelay(1));
         
+    }
+
+    IEnumerator ExitItemViewerDelay(int delay)
+    {
+
+        yield return new WaitForSeconds(delay);
+        GlobalController._ins.switchUIView("UI_Driving", "MainCamera", false, 1);
+
     }
 
     // Update is called once per frame

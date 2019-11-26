@@ -19,7 +19,6 @@ public class ColliderDetector : MonoBehaviour
     public Material holoMaterial;
 
     public static ColliderDetector _instance;
-    public static string currentSolution;
 
     private GameObject item;
     private Vector3 itemOriginalPosi;
@@ -92,7 +91,7 @@ public class ColliderDetector : MonoBehaviour
     }
 
     public void exitViewerMode () {
-        GlobalController._ins.switchUIView("UI_Driving", "MainCamera", false, 1);
+        
         ItemViewerController._ins.ExitItemViewer(); 
         Destroy(instanceObj);
     }

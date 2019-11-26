@@ -9,16 +9,14 @@ public class ViewerBtnClicked : MonoBehaviour
     // Start is called before the first frame update
     public void onClickHandler (string value) {
 
-        ColliderDetector._instance.exitViewerMode();
-
-        if(value == ColliderDetector.currentSolution){
+        if(value == ItemViewerController.itemSolution){
             GlobalController._score = GlobalController._score + 1000;
-            DisplayResult._displayResult.showResult("Go Job !!");
+            DisplayResult._ins.showResult("RIGHT", "1000");
         }else{
-            DisplayResult._displayResult.showResult("WRONG");
+            DisplayResult._ins.showResult("WRONG", "0");
         }
 
-        
-        
+        ColliderDetector._instance.exitViewerMode();
+
     }
 }
