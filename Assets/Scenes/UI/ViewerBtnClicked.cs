@@ -8,14 +8,18 @@ public class ViewerBtnClicked : MonoBehaviour
     private Text resText;
     // Start is called before the first frame update
     public void onClickHandler (string value) {
-
+        bool final = false;
+        int money = 0;
         if(value == ItemViewerController.itemSolution){
-            GlobalController._score = GlobalController._score + 1000;
+            money = 1000;
+            GlobalController._score = GlobalController._score + money;
             DisplayResult._ins.showResult("RIGHT", "1000");
+            final = true;
         }else{
             DisplayResult._ins.showResult("WRONG", "0");
+            final = false;
         }
-
+        GlobalController._ins.CollectItem(ItemViewerController.itemName, ItemViewerController.itemSolution, final, money);
         ColliderDetector._instance.exitViewerMode();
 
     }

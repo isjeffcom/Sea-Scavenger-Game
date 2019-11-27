@@ -8,6 +8,7 @@ public class ItemViewerController : MonoBehaviour
 
     // Instance for cross cs access
     public static ItemViewerController _ins;
+    public static string itemName;
     public static string itemSolution;
 
     // Save State
@@ -115,6 +116,7 @@ public class ItemViewerController : MonoBehaviour
         StartAni(true);
 
         //toState(0);
+        itemName = data.getTitle();
         itemSolution = data.getSolution();
 
         // Set UI Text
@@ -135,6 +137,7 @@ public class ItemViewerController : MonoBehaviour
         _UI_IV_State = 0;
         loaclState = false;
         CObject = null;
+        itemName = null;
         itemSolution = null;
         StartCoroutine(ExitItemViewerDelay(1));
         

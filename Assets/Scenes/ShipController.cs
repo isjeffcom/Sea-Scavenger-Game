@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class ShipController : MonoBehaviour
 {
-    CharacterController player;
+
+    public static ShipController _ins;
 
     public float moveSpeed = 30.0f;
     public float rotateSpeed = 0.02f;
     public float cameraSpeed = 5.0f;
     public float topLimit;
     public float bottomLimit;
-    public Vector3 aimingOffset = new Vector3(0, -20, -20);
+    public Vector3 aimingOffset = new Vector3(0, -15, -65);
 
     [Range(0.01f, 1.0f)]
     public float camSmoothFactor = 0.5f;
@@ -42,15 +43,16 @@ public class ShipController : MonoBehaviour
 
     bool stopMoving = false;
 
-
+    void Awake()
+    {
+        _ins = this;
+    }
 
     // Start is called before the first frame update
-    void Start()
+    public void init()
     {
-        player = GetComponent<CharacterController>();
-
         cameraOffset = mainCamera.transform.position - transform.position;
-        
+        gameObject.GetComponent<Animator>().enabled = false;
     }
 
     // Update is called once per frame
@@ -72,7 +74,7 @@ public class ShipController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.T))
         {
-            resetScene();
+            GlobalController._ins.resetScene();
         }
 
         if (GlobalController._mode == 1)
@@ -249,11 +251,6 @@ public class ShipController : MonoBehaviour
 
         crashScreen.SetActive(false);
         stopMoving = false;
-    }
-
-    void resetScene()
-    {
-        SceneManager.LoadScene(0);
     }
 
 
