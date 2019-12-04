@@ -17,7 +17,7 @@ public class GlobalController : MonoBehaviour
     // Adjustable value
     public int SpaceLimitTimer = 400;
 
-    // Mode 0: Start Screen, 1: Game Play, 2: Pick up item, 3: Ended
+    // Mode 0: Start Screen, 1: Game Play, 2: Pick up item, 3: Ended, 4: In Game Menu
     public static int _mode = 0;
     public static int _score = 0;
     public static int _paw = 30;
@@ -28,6 +28,7 @@ public class GlobalController : MonoBehaviour
 
     // UIs
     private GameObject UI_Warning;
+    //private GameObject UI_InGame_Menu;
     private Animator openSceneAni;
 
     // Cameras
@@ -44,13 +45,19 @@ public class GlobalController : MonoBehaviour
     // Objects for hide
     public Transform hint;
 
+    // In Game Menu Bool
+    private bool inGame = false;
+
     void Awake()
     {
         _ins = this;
+        
         _limitDown = SpaceLimitTimer;
         openSceneAni = GameObject.Find("UI_Game_Ending").GetComponent<Animator>();
         cameraStart = mainCamera.GetComponent<Animator>();
+        All_UI = GameObject.FindGameObjectsWithTag("UI_Pages");
         UI_Warning = GameObject.Find("UI_Warning");
+        //UI_InGame_Menu = GameObject.Find("UI_InGame_Menu");
         UIStart = GameObject.Find("UI_Start").GetComponent<Animator>();
     }
 
@@ -62,19 +69,32 @@ public class GlobalController : MonoBehaviour
         switchUIView("UI_Start", "MainCamera", true, 0);
         openSceneAni.SetBool("open", true);
         UI_Warning.SetActive(false);
+        //UI_InGame_Menu.SetActive(false);
     }
 
     void LateUpdate()
     {
 
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            _load = _load + 1;
+            if(_mode == 1 || _mode == 4)
+            {
+                inGameMenu();
+            }
+            
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.N))
+    public void inGameMenu ()
+    {
+        inGame = !inGame;
+        
+        if (inGame)
         {
-            _loadTotal = _loadTotal + 1;
+            switchUIView("UI_InGame_Menu", "MainCamera", true, 4);
+        } else
+        {
+            switchUIView("UI_Driving", "MainCamera", false, 1);
         }
     }
 
@@ -124,7 +144,7 @@ public class GlobalController : MonoBehaviour
 
     public void switchUIView (string pageName, string camName, bool cursor, int mode)
     {
-        All_UI = GameObject.FindGameObjectsWithTag("UI_Pages");
+        
         switchCamera(camName);
 
         
@@ -197,12 +217,6 @@ public class GlobalController : MonoBehaviour
         switchCursor(true);
     }
 
-    public void resetScene()
-    {
-        openSceneAni.SetBool("open", false);
-        StartCoroutine(WaitForCloseSceneAni(1));
-    }
-
     IEnumerator WaitForCloseSceneAni(int delay)
     {
         // Wait 3 Seconds to show the leaser effect
@@ -217,4 +231,15 @@ public class GlobalController : MonoBehaviour
         Cursor.lockState = bol ? CursorLockMode.None :  CursorLockMode.Locked;
     }
 
+    public void resetScene()
+    {
+        openSceneAni.SetBool("open", false);
+        StartCoroutine(WaitForCloseSceneAni(1));
+    }
+
+
+    public void exitGame()
+    {
+        Application.Quit();
+    }
 }
