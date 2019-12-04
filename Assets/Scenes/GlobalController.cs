@@ -14,6 +14,9 @@ public class GlobalController : MonoBehaviour
     // Instance for cross cs access
     public static GlobalController _ins;
 
+    // Adjustable value
+    public int SpaceLimitTimer = 400;
+
     // Mode 0: Start Screen, 1: Game Play, 2: Pick up item, 3: Ended
     public static int _mode = 0;
     public static int _score = 0;
@@ -21,6 +24,11 @@ public class GlobalController : MonoBehaviour
     public static int _load = 78;
     public static int _loadTotal = 300;
     public static int _collected = 0;
+    public static int _limitDown;
+
+    // UIs
+    private GameObject UI_Warning;
+    private Animator openSceneAni;
 
     // Cameras
     public Camera mainCamera;
@@ -39,7 +47,10 @@ public class GlobalController : MonoBehaviour
     void Awake()
     {
         _ins = this;
+        _limitDown = SpaceLimitTimer;
+        openSceneAni = GameObject.Find("UI_Game_Ending").GetComponent<Animator>();
         cameraStart = mainCamera.GetComponent<Animator>();
+        UI_Warning = GameObject.Find("UI_Warning");
         UIStart = GameObject.Find("UI_Start").GetComponent<Animator>();
     }
 
@@ -49,6 +60,8 @@ public class GlobalController : MonoBehaviour
         // Open main camera
         switchCamera("MainCamera");
         switchUIView("UI_Start", "MainCamera", true, 0);
+        openSceneAni.SetBool("open", true);
+        UI_Warning.SetActive(false);
     }
 
     void LateUpdate()
@@ -69,7 +82,8 @@ public class GlobalController : MonoBehaviour
     {
         UIStart.SetBool("open", true);
         cameraStart.SetBool("open", true);
-        StartCoroutine(WaitForCamAni(2));
+        switchCursor(false);
+        StartCoroutine(WaitForCamAni(3));
     }
 
     IEnumerator WaitForCamAni(int delay)
@@ -82,9 +96,6 @@ public class GlobalController : MonoBehaviour
         ShipController._ins.init();
         switchUIView("UI_Driving", "MainCamera", false, 1);
         DisplayHistory._ins.init();
-        
-        
-
 
     }
 
@@ -115,7 +126,9 @@ public class GlobalController : MonoBehaviour
     {
         All_UI = GameObject.FindGameObjectsWithTag("UI_Pages");
         switchCamera(camName);
-        if(_mode != 3)
+
+        
+        if (_mode != 3)
         {
             switchCursor(cursor);
         }
@@ -153,6 +166,28 @@ public class GlobalController : MonoBehaviour
         //ActionHistories._ins.AddHistory(name, solution, res, money);
     }
 
+    public void hitLimit (bool bol)
+    {
+        if (bol)
+        {
+            
+            if (_limitDown > 0)
+            {
+                _limitDown = _limitDown - 1;
+            }
+            else
+            {
+                resetScene();
+            }
+        } else
+        {
+            _limitDown = SpaceLimitTimer;
+        }
+        UI_Warning.SetActive(bol);
+
+    }
+
+
     void GameEneded ()
     {
         _mode = 3;
@@ -164,7 +199,16 @@ public class GlobalController : MonoBehaviour
 
     public void resetScene()
     {
+        openSceneAni.SetBool("open", false);
+        StartCoroutine(WaitForCloseSceneAni(1));
+    }
+
+    IEnumerator WaitForCloseSceneAni(int delay)
+    {
+        // Wait 3 Seconds to show the leaser effect
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(0);
+
     }
 
     public void switchCursor (bool bol)
