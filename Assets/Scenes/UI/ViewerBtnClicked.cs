@@ -10,6 +10,8 @@ public class ViewerBtnClicked : MonoBehaviour
     public void onClickHandler (string value) {
         bool final = false;
         int money = 0;
+        Debug.Log("value: " + value);
+        Debug.Log("Solution: " + ItemViewerController.itemSolution);
         if(value == ItemViewerController.itemSolution){
             money = 1000;
             GlobalController._score = GlobalController._score + money;

@@ -25,6 +25,8 @@ public class GlobalController : MonoBehaviour
     public static int _loadTotal = 300;
     public static int _collected = 0;
     public static int _limitDown;
+    public bool _ended = false;
+    public int _endCondition = 1;
 
     // UIs
     private GameObject UI_Warning;
@@ -69,6 +71,9 @@ public class GlobalController : MonoBehaviour
         switchUIView("UI_Start", "MainCamera", true, 0);
         openSceneAni.SetBool("open", true);
         UI_Warning.SetActive(false);
+
+        // Play Music
+        gameObject.GetComponent<AudioSource>().Play();
         //UI_InGame_Menu.SetActive(false);
     }
 
@@ -152,6 +157,7 @@ public class GlobalController : MonoBehaviour
         {
             switchCursor(cursor);
         }
+
         
 
         foreach (GameObject page in All_UI)
@@ -165,7 +171,14 @@ public class GlobalController : MonoBehaviour
             }
         }
 
-        _mode = mode;
+        if (_ended)
+        {
+            switchCursor(_ended);
+        }
+
+
+
+        _mode = _ended ? 3 : mode;
 
     }
 
@@ -174,9 +187,11 @@ public class GlobalController : MonoBehaviour
         // UI Response
         DisplayHistory._ins.AddHistory(name, solution, res, money);
 
-        if(_collected >= 1)
+        if(_collected >= _endCondition)
         {
-            GameEneded();
+            Debug.Log(_collected);
+            Debug.Log(_endCondition);
+            GameEnded();
         } else
         {
             _collected++;
@@ -208,9 +223,9 @@ public class GlobalController : MonoBehaviour
     }
 
 
-    void GameEneded ()
+    void GameEnded ()
     {
-        _mode = 3;
+        _ended = true;
         DisplayHistory._ins.Ended();
         GameObject.Find("UI_Restart").GetComponent<CanvasGroup>().alpha = 1;
         GameObject.Find("UI_Restart").GetComponent<CanvasGroup>().blocksRaycasts = true;

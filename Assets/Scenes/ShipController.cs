@@ -13,7 +13,7 @@ public class ShipController : MonoBehaviour
     public float cameraSpeed = 5.0f;
     public float topLimit;
     public float bottomLimit;
-    public Vector3 aimingOffset = new Vector3(0, -15, -65);
+    public Vector3 aimingOffset = new Vector3(0, 0, -15);
 
     [Range(0.01f, 1.0f)]
     public float camSmoothFactor = 0.5f;
@@ -79,7 +79,7 @@ public class ShipController : MonoBehaviour
 
         if (GlobalController._mode == 1)
         {
-
+            //Debug.Log(GlobalController._mode);
             // Reset rotation and face forward
             if (Input.GetKey(KeyCode.R))
             {

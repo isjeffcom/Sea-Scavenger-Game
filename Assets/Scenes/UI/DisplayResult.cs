@@ -9,11 +9,14 @@ public class DisplayResult : MonoBehaviour
 
     private GameObject UI_Res_Text;
     private GameObject UI_Res_Money_Text;
+    private GameObject UI_Res_Bg;
+
 
     void Awake() {
         _ins = this;
         UI_Res_Text = GameObject.Find("UI_Res_Text");
         UI_Res_Money_Text = GameObject.Find("UI_Res_Money_Text");
+        UI_Res_Bg = GameObject.Find("UI_Res_Bg");
 
     }
 
@@ -24,6 +27,15 @@ public class DisplayResult : MonoBehaviour
     public void showResult(string res, string money) {
         gameObject.SetActive(true);
         StartAni(true);
+        
+        if(res == "RIGHT")
+        {
+            UI_Res_Bg.GetComponent<Image>().color = new Color32 (55, 170, 129, 255);
+        } else
+        {
+            UI_Res_Bg.GetComponent<Image>().color = new Color32 (255, 54, 47, 255);
+        }
+
         UI_Res_Text.GetComponent<Text>().text = res;
         UI_Res_Money_Text.GetComponent<Text>().text = money;
         unshowResult();
@@ -33,8 +45,6 @@ public class DisplayResult : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetBool("open", bol);
     }
-
-    
 
     void unshowResult ()
     {

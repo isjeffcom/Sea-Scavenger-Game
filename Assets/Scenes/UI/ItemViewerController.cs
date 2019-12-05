@@ -127,7 +127,6 @@ public class ItemViewerController : MonoBehaviour
         UI_IV_YEAR.GetComponent<Text>().text = data.getPubYear();
         UI_IV_LETH.GetComponent<Text>().text = data.getLethal();
 
-        
     }
 
     public void ExitItemViewer ()
