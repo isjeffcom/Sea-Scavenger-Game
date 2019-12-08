@@ -26,13 +26,17 @@ public class ColliderDetector : MonoBehaviour
 
     private GameObject instanceObj;
 
+    public GameObject insObjRef;
+
     Vector3 offset = new Vector3 (8, 8, -8);
 
     //Vector3 hide = new Vector3 (-1, -1, 1);
 
     void Awake(){
 		_instance = this;
-	}
+
+
+    }
 
     // Delay 0.1f and go to view item (give some time for the instantiate process)
     public void toViewItem (GameObject obj)
@@ -49,31 +53,12 @@ public class ColliderDetector : MonoBehaviour
         // Copy Object
         instanceObj = Instantiate(obj, itemDemoPosition, Quaternion.Euler(new Vector3(0, 0, 0)));
 
-        // Add script to object copied
-        //instanceObj.AddComponent<ViewItem>();
+        // Auto Resize Object for Camera View
+        AutoScaleObject(instanceObj);
 
-        // Apply Holo Material to instance object
-        if (instanceObj.GetComponent<MeshRenderer>())
-        {
-            instanceObj.GetComponent<Renderer>().material = holoMaterial;
-            // Apply new scale value to new shape
-            instanceObj.transform.localScale = new Vector3(1, 1, 1);
+        addHoloMat(instanceObj);
 
-        } else
-        {
-            foreach(Transform child in instanceObj.transform)
-            {
-                if (child.GetComponent<Renderer>())
-                {
-                    child.GetComponent<Renderer>().material = holoMaterial;
-                }
 
-                // Apply new scale value to new shape
-                instanceObj.transform.localScale = new Vector3(10, 10, 10);
-            }
-            
-        }
-        
         // Wait 3 Seconds to show the leaser effect
         yield return new WaitForSeconds(delay);
 
@@ -94,5 +79,64 @@ public class ColliderDetector : MonoBehaviour
         
         ItemViewerController._ins.ExitItemViewer(); 
         Destroy(instanceObj);
+    }
+
+    private void AutoScaleObject(GameObject obj)
+    {
+        // Get the bounds reference (the size of GO should be the same)
+        Bounds refBound = insObjRef.GetComponent<Renderer>().bounds;
+
+        Bounds objBound;
+        // Get the GO bounds
+        if (obj.GetComponent<Renderer>() != null)
+        {
+            objBound = obj.GetComponent<Renderer>().bounds;
+        }
+
+        else if(obj.transform.Find("obj").gameObject.GetComponent<Renderer>() != null)
+        {
+            objBound = obj.transform.Find("obj").gameObject.GetComponent<Renderer>().bounds;
+        }
+
+        else
+        {
+            objBound = obj.transform.Find("obj").gameObject.GetComponent<Collider>().bounds;
+        }
+      
+
+        // Get the difference between the radius (is it smaller or bigger ?)
+        float percent = objBound.extents.magnitude / refBound.extents.magnitude;
+
+        // Depending on the percent, adjust the scale
+        Vector3 finalScale = obj.transform.localScale * ((percent > 1) ? (1 / percent) : (1 + (1 - percent)));
+
+        obj.transform.localScale = finalScale;
+    }
+
+    public void addHoloMat(GameObject obj)
+    {
+        // Apply Holo Material to instance object
+        if (obj.GetComponent<MeshRenderer>())
+        {
+
+            obj.GetComponent<Renderer>().material = holoMaterial;
+
+        }
+        else
+        {
+            foreach (Transform child in obj.transform)
+            {
+                if (child.GetComponent<Renderer>())
+                {
+                    child.GetComponent<Renderer>().material = holoMaterial;
+                }
+                else
+                {
+                    addHoloMat(child.gameObject);
+                }
+
+            }
+
+        }
     }
 }
