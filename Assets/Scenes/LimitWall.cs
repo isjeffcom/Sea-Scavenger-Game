@@ -11,15 +11,6 @@ public class LimitWall : MonoBehaviour
         mat = gameObject.GetComponent<MeshRenderer>().material;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "RealSub")
-        {
-            
-        }
-
-    }
-
     // Fade display limit wall when player approching
     void OnTriggerStay(Collider other)
     {
@@ -52,10 +43,6 @@ public class LimitWall : MonoBehaviour
         }
     }
 
-    void wallVisiable (bool bol)
-    {
-
-    }
 
     float GetXDistance (Transform a, Transform b)
     {

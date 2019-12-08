@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class SpaceLimit : MonoBehaviour
 {
 
-
     private Text timer;
 
 
@@ -19,7 +18,6 @@ public class SpaceLimit : MonoBehaviour
     {
         if(other.gameObject.name == "RealSub")
         {
-            Debug.Log("Enter sl");
             GlobalController._ins.hitLimit(true);
             timer.text = GlobalController._limitDown.ToString();
         }
@@ -30,7 +28,6 @@ public class SpaceLimit : MonoBehaviour
         if (other.gameObject.name == "RealSub")
         {
             GlobalController._ins.hitLimit(false);
-            Debug.Log("exit sl");
         }
     }
 }

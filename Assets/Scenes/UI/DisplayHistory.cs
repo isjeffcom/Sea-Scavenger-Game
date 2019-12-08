@@ -122,5 +122,4 @@ public class DisplayHistory : MonoBehaviour
         obj.transform.Find("UI_History_S_Title").GetComponent<Text>().text = name;
     }
 
-    
 }

@@ -16,7 +16,7 @@ public class ItemViewerController : MonoBehaviour
     private bool loaclState = false;
 
     // Rotation Speed
-    private float rotSpeed = 100;
+    private float rotSpeed = 160;
 
     // Data Container
     private ItemData data;
@@ -27,6 +27,7 @@ public class ItemViewerController : MonoBehaviour
     private GameObject UI_IV_Contents_Cont;
     private GameObject UI_IV_Solutions;
     private GameObject UI_IV_Property;
+    private GameObject UI_IV_P_Cont;
     private GameObject UI_IV_Next;
     private GameObject UI_IV_PageTitle;
     private GameObject UI_IV_Animated_Bg;
@@ -47,10 +48,12 @@ public class ItemViewerController : MonoBehaviour
     private Animator Ani_Solu;
     private Animator Ani_Contents;
     private Animator Ani_Property;
+    private Animator Ani_Property_Enter;
     private Animator Ani_PageTitle;
     private Animator Ani_AnimatedBg;
     private Animator Ani_Contents_Cont;
     private Animator Ani_Status;
+    
 
 
     private float ObjAniCounter = 0f;
@@ -68,6 +71,7 @@ public class ItemViewerController : MonoBehaviour
         UI_IV_PageTitle = GameObject.Find("UI_IV_PageTitle");
         UI_IV_Next = GameObject.Find("UI_IV_Next");
         UI_IV_Property = GameObject.Find("UI_IV_Property");
+        UI_IV_P_Cont = GameObject.Find("UI_IV_P_Cont");
         UI_IV_Animated_Bg = GameObject.Find("UI_Animated_Bg");
         UI_IV_Status = GameObject.Find("UI_IV_Status");
 
@@ -84,6 +88,7 @@ public class ItemViewerController : MonoBehaviour
         Ani_Solu = UI_IV_Solutions.GetComponent<Animator>();
         Ani_Contents = UI_IV_Contents.GetComponent<Animator>();
         Ani_Property = UI_IV_Property.GetComponent<Animator>();
+        Ani_Property_Enter = UI_IV_P_Cont.GetComponent<Animator>();
         Ani_PageTitle = UI_IV_PageTitle.GetComponent<Animator>();
         Ani_AnimatedBg = UI_IV_Animated_Bg.GetComponent<Animator>();
         Ani_Contents_Cont = UI_IV_Contents_Cont.GetComponent<Animator>();
@@ -98,7 +103,8 @@ public class ItemViewerController : MonoBehaviour
         Ani_AnimatedBg.SetBool("open", bol);
         Ani_Contents_Cont.SetBool("open", bol);
         Ani_Status.SetBool("open", bol);
-        
+        Ani_Property_Enter.SetBool("open", bol);
+
     }
 
     public void EnterItemViewer(GameObject obj)
@@ -197,6 +203,7 @@ public class ItemViewerController : MonoBehaviour
         string titleSub = state == 1 ? "PRIMARY MISSION / SELECT SOLUTIONS" : "PRIMARY MISSION / VIEW ITEM DETAILS";
 
         // Play Animation
+        
         Ani_Property.SetBool("open", aniBool);
         Ani_Contents.SetBool("open", aniBool);
         Ani_Solu.SetBool("open", aniBool);
