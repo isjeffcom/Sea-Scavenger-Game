@@ -40,6 +40,7 @@ public class GlobalController : MonoBehaviour
     // Start Ani
     private Animator cameraStart;
     private Animator UIStart;
+    private Animator terrainAni;
 
     // All UI Array Container
     private GameObject[] All_UI;
@@ -61,6 +62,7 @@ public class GlobalController : MonoBehaviour
         UI_Warning = GameObject.Find("UI_Warning");
         //UI_InGame_Menu = GameObject.Find("UI_InGame_Menu");
         UIStart = GameObject.Find("UI_Start").GetComponent<Animator>();
+        terrainAni = GameObject.Find("DisplayLaterTerrain").GetComponent<Animator>();
     }
 
     void Start()
@@ -107,6 +109,7 @@ public class GlobalController : MonoBehaviour
     {
         UIStart.SetBool("open", true);
         cameraStart.SetBool("open", true);
+        terrainAni.SetBool("open", true);
         switchCursor(false);
         StartCoroutine(WaitForCamAni(3));
     }
@@ -152,13 +155,10 @@ public class GlobalController : MonoBehaviour
         
         switchCamera(camName);
 
-        
         if (_mode != 3)
         {
             switchCursor(cursor);
         }
-
-        
 
         foreach (GameObject page in All_UI)
         {
@@ -175,8 +175,6 @@ public class GlobalController : MonoBehaviour
         {
             switchCursor(_ended);
         }
-
-
 
         _mode = _ended ? 3 : mode;
 

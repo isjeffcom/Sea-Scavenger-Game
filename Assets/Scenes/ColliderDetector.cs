@@ -35,7 +35,6 @@ public class ColliderDetector : MonoBehaviour
     void Awake(){
 		_instance = this;
 
-
     }
 
     // Delay 0.1f and go to view item (give some time for the instantiate process)
@@ -129,6 +128,11 @@ public class ColliderDetector : MonoBehaviour
                 if (child.GetComponent<Renderer>())
                 {
                     child.GetComponent<Renderer>().material = holoMaterial;
+                }
+
+                else if (child.GetComponent<Light>())
+                {
+                    child.GetComponent<Light>().enabled = false;
                 }
                 else
                 {

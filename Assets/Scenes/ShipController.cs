@@ -253,7 +253,4 @@ public class ShipController : MonoBehaviour
         stopMoving = false;
     }
 
-
-
-
 }

@@ -16,7 +16,7 @@ public class ItemViewerController : MonoBehaviour
     private bool loaclState = false;
 
     // Rotation Speed
-    private float rotSpeed = 160;
+    private float rotSpeed = 200;
 
     // Data Container
     private ItemData data;
@@ -178,6 +178,15 @@ public class ItemViewerController : MonoBehaviour
             {
                 CObject.transform.Rotate(CObject.transform.up, rotX, Space.World);
             }
+
+            /*if (Vector3.Dot(CObject.transform.right, Vector3.right) >= 0)
+            {
+                CObject.transform.Rotate(CObject.transform.right, rotY, Space.World);
+            }
+            else
+            {
+                CObject.transform.Rotate(CObject.transform.right, -rotY, Space.World);
+            }*/
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -191,8 +200,6 @@ public class ItemViewerController : MonoBehaviour
             }
 
         }
-
-        
 
     }
 
