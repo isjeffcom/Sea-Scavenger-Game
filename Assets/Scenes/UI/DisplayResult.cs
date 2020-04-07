@@ -10,6 +10,7 @@ public class DisplayResult : MonoBehaviour
     private GameObject UI_Res_Text;
     private GameObject UI_Res_Money_Text;
     private GameObject UI_Res_Bg;
+    private GameObject UI_Res_ShouldBe;
 
 
     void Awake() {
@@ -17,6 +18,7 @@ public class DisplayResult : MonoBehaviour
         UI_Res_Text = GameObject.Find("UI_Res_Text");
         UI_Res_Money_Text = GameObject.Find("UI_Res_Money_Text");
         UI_Res_Bg = GameObject.Find("UI_Res_Bg");
+        UI_Res_ShouldBe = GameObject.Find("UI_Res_ShouldBe");
 
     }
 
@@ -24,7 +26,7 @@ public class DisplayResult : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void showResult(string res, string money) {
+    public void showResult(string res, string money, string solution) {
         gameObject.SetActive(true);
         StartAni(true);
         
@@ -38,6 +40,7 @@ public class DisplayResult : MonoBehaviour
 
         UI_Res_Text.GetComponent<Text>().text = res;
         UI_Res_Money_Text.GetComponent<Text>().text = money;
+        UI_Res_ShouldBe.GetComponent<Text>().text = "Solution is: " + solution;
         unshowResult();
     }
 

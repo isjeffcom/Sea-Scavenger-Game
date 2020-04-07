@@ -61,9 +61,29 @@ public class ColliderDetector : MonoBehaviour
         // Wait 3 Seconds to show the leaser effect
         yield return new WaitForSeconds(delay);
 
+        // Destroy original item
+        destroyOriginal(obj);
+
         // Enter view mode
         enterViewerMode();
 
+    }
+
+    private void destroyOriginal (GameObject t)
+    {
+
+        ItemCollision._ins.hideHint();
+
+        string[] beamArr = t.name.Split(char.Parse("_"));
+        GameObject beam = GameObject.Find("B_" + beamArr[1]);
+        if (beam != null && beam)
+        {
+            Destroy(beam);
+        }
+        
+        Destroy(t);
+        
+        
     }
 
     // All UI Switch action now control by Global controller

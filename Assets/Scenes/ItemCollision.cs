@@ -6,12 +6,19 @@ public class ItemCollision : MonoBehaviour
 {
 
 
+    public static ItemCollision _ins;
+
     public Transform hint;
     public Transform mainCamera;
 
 
     Vector3 hintOffset = new Vector3(8, 8, -8);
     private GameObject instanceObj;
+
+    private void Awake()
+    {
+        _ins = this;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -44,8 +51,13 @@ public class ItemCollision : MonoBehaviour
         if (other.gameObject.name == "RealSub")
         {
 
-            hint.position = new Vector3(-1,-1,1);
+            hint.position = new Vector3(-100,-100,-100);
         }
+    }
+
+    public void hideHint ()
+    {
+        hint.position = new Vector3(-100, -100, -100);
     }
 
 
